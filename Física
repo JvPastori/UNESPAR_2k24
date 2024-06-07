@@ -1,0 +1,65 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class ElectrostaticCalculator {
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Calculadora Eletrostática");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 300);
+        
+        Container container = frame.getContentPane();
+        container.setLayout(new GridLayout(6, 2));
+        
+        JLabel distanceLabel = new JLabel("Distância (m):");
+        JTextField distanceField = new JTextField();
+        
+        JLabel force1Label = new JLabel("Força de Atração (N):");
+        JTextField force1Field = new JTextField();
+        
+        JLabel force2Label = new JLabel("Força de Repulsão (N):");
+        JTextField force2Field = new JTextField();
+        
+        JButton calculateButton = new JButton("Calcular");
+        JTextArea resultArea = new JTextArea();
+        
+        calculateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double distance = Double.parseDouble(distanceField.getText());
+                    double force1 = Double.parseDouble(force1Field.getText());
+                    double force2 = Double.parseDouble(force2Field.getText());
+                    double k = 8.99e9;
+                    
+                    // Calcular Q
+                    double Q = Math.sqrt(force2 * Math.pow(distance, 2) / k);
+                    
+                    // Calcular x (carga negativa)
+                    double x = Math.sqrt((force1 * Math.pow(distance, 2)) / (k * Q));
+                    double q1 = x;
+                    double q2 = Q - x;
+                    
+                    resultArea.setText("Carga negativa (esfera 1): " + q1 + " C\n" +
+                                       "Carga positiva (esfera 2): " + q2 + " C");
+                } catch (NumberFormatException ex) {
+                    resultArea.setText("Por favor, insira valores válidos.");
+                }
+            }
+        });
+        
+        container.add(distanceLabel);
+        container.add(distanceField);
+        container.add(force1Label);
+        container.add(force1Field);
+        container.add(force2Label);
+        container.add(force2Field);
+        container.add(calculateButton);
+        container.add(new JLabel());
+        container.add(resultArea);
+        
+        frame.setVisible(true);
+    }
+}
