@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Implementação de fila 
 // Implementação de fila com prioridade
-
-
 // João Vitor Pastori Leme Batista 
 
 typedef struct no {
@@ -19,7 +16,7 @@ typedef struct {
     int tamanho;
 } Fila;
 
-void criarFila(Fila *fila){ // Criando uma fila
+void criarFila(Fila *fila){ 
     fila->inicio = NULL;
     fila->final = NULL;
     fila->tamanho = 0;
@@ -71,9 +68,8 @@ void imprimirFila(Fila *fila){
 
 int main(){
     No *r1, *r2;
-    Fila filaPrioridade1;
-    Fila filaPrioridade2;
-    criarFila(&filaPrioridade1); // Inicializa uma fila
+    Fila filaPrioridade1, filaPrioridade2;
+    criarFila(&filaPrioridade1);
     criarFila(&filaPrioridade2);
     int valor, entradaUsuario, prioridade, removerValor, imprimirFilaPrioridade;
 
