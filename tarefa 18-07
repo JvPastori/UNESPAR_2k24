@@ -4,6 +4,9 @@
 // Implementação de fila 
 // Implementação de fila com prioridade
 
+
+// João Vitor Pastori Leme Batista 
+
 typedef struct no {
     int valor;
     struct no *proximo;
